@@ -22,6 +22,8 @@ from sklearn.preprocessing import StandardScaler
 
 def extract_data(url, delete_columns, indicator):
     '''
+    This function extracts data from a dataset, cleans it up and returns
+    2 dataframes to the user. The original data and the transponsed data.
     Parameters
     ----------
     url : STRING
@@ -175,6 +177,7 @@ def plot_chart(data, x_data, y_data, kind, xlabel, ylabel, title):
 
 def heat_maps(years, data):
     '''
+    this is used to find correlation between data
     Parameters
     ----------
     years : LIST
@@ -444,6 +447,7 @@ x_array = df_fitting.dropna().to_numpy()
 
 # choose the input and output variables
 x_axis, y_axis = x_array[:, 0], x_array[:, 1]
+
 
 # curve fit
 land, _ = opt.curve_fit(objective, x_axis, y_axis)
