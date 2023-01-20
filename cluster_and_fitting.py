@@ -199,7 +199,8 @@ def heat_maps(years, data):
     sns.heatmap(df.corr(), annot=True, fmt='.5g')
 
     # Give a title to the heatmap
-    plt.title('Correlation heatmap for '+start_year+'-'+end_year, fontsize=18, pad=(24))
+    plt.title('Correlation heatmap for '+start_year+'-'+end_year, fontsize=18, 
+              pad=(24))
 
     #save the image
     plt.savefig('Correlation_.png')
@@ -350,8 +351,8 @@ plt.savefig('elbow.png')
 plt.show()
 
 # Create a model based on 2 centroids
-kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, n_init = 10,
-               random_state = 0)
+kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, 
+                n_init = 10, random_state = 0)
 
 # Fit to the data and predict the cluster assignments for each data point
 km_clusters_normalized = kmeans.fit_predict(x_scaled)
@@ -418,22 +419,27 @@ print(min(e), max(e))
 #cluster 2 countries: Argentina, Belarus, Senegal
 
 g = df_cluster_analysis.loc[df_cluster_analysis['label'] == 0]
-df_bar = g.loc[g['Country Name'].isin(['Denmark', 'Australia', 'United Kingdom'])]
-plot_chart(df_bar, x_data_country,  y_data_country, 'bar', 'Country', '%land', 'Cluster 0 - Agricultural land')
+df_bar = g.loc[g['Country Name'].isin(['Denmark', 
+                                       'Australia', 'United Kingdom'])]
+plot_chart(df_bar, x_data_country,  y_data_country, 
+           'bar', 'Country', '%land', 'Cluster 0 - Agricultural land')
 
 g = df_cluster_analysis.loc[df_cluster_analysis['label'] == 1]
 df_bar1 = g.loc[g['Country Name'].isin(['Gabon', 'Japan', 'Singapore'])]
-plot_chart(df_bar1, x_data_country,  y_data_country, 'bar', 'Country', '%land', 'Cluster 1 - Agricultural land')
+plot_chart(df_bar1, x_data_country,  y_data_country, 
+           'bar', 'Country', '%land', 'Cluster 1 - Agricultural land')
 
 g = df_cluster_analysis.loc[df_cluster_analysis['label'] == 2]
 df_bar2 = g.loc[g['Country Name'].isin(['Argentina', 'Kenya', 'Portugal'])]
-plot_chart(df_bar2, x_data_country,  y_data_country, 'bar', 'Country', '%land', 'Cluster 2 - Agricultural land')
+plot_chart(df_bar2, x_data_country,  y_data_country, 
+           'bar', 'Country', '%land', 'Cluster 2 - Agricultural land')
 
 #------------------------------fitting---------------------------------------#
 
 #get dataset
-df_fitting = df_years.loc[year, ["Year", "United Kingdom"]].apply(pd.to_numeric, 
-                                                       errors='coerce')
+df_fitting = df_years.loc[year, 
+                          ["Year", "United Kingdom"]].apply(pd.to_numeric, 
+                                                            errors='coerce')
 x_array = df_fitting.dropna().to_numpy()
 
 # choose the input and output variables
@@ -499,7 +505,8 @@ plt.show()
 plt.figure()
 plt.plot(x_axis, y_axis, label='United Kingdom % land')
 plt.plot(x_line, y_line, '--', color='red')
-plt.fill_between(x_axis, low, up, alpha=0.7, color='green', label='error range')
+plt.fill_between(x_axis, low, up, alpha=0.7, color='green', 
+                 label='error range')
 plt.xlabel('years')
 plt.ylabel('% land')
 plt.title('% land by country')
