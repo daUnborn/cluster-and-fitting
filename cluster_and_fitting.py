@@ -173,7 +173,6 @@ def plot_chart(data, x_data, y_data, kind, xlabel, ylabel, title):
     plt.savefig(title+'.svg', bbox_inches="tight")
     plt.show()
 
-    
 def heat_maps(years, data):
     '''
     Parameters
@@ -384,8 +383,6 @@ print("Silhouette score: ", score)
 
 #------------------end of normalization------------------------------------#
 
-
-
 #analysis of the clusters
 m = df_country[['Country Name', start_year, end_year]]
 m = m.loc[(m[start_year] < 0) & (m[end_year] < 0)]
@@ -395,7 +392,6 @@ n = df_clustering[['Country Name', start_year, end_year]]
 n = n.loc[(n[start_year] < 0) & (n[end_year] > 0)]
 print(n)
 
-
 # countries in each of the clusters
 # get a df of the countries based on classification
 # select random countries
@@ -403,17 +399,15 @@ print(n)
 df_cluster_analysis = df_clustering.loc[:].dropna()
 df_cluster_analysis['label'] = km_clusters.tolist()
 
-
 g = df_cluster_analysis.loc[df_cluster_analysis['label'] == 2]
 s = g['1980']
 e = g['2020']
 
 g['increase'] = ((e - s)/e) * 100
 g['diff'] = (g['1980'] - g['2020'])
-#print(g.to_string())
+print(g.to_string())
 
-#print(min(e), max(e))
-
+print(min(e), max(e))
 
 #2 = 59.92787441663131
 #1 = 2.79515069113981
@@ -422,7 +416,6 @@ g['diff'] = (g['1980'] - g['2020'])
 #cluster 0 countries: Denmark, Australia, United Kingdom
 #cluster 1 countries: Japan, Qatar, Gabon
 #cluster 2 countries: Argentina, Belarus, Senegal
-
 
 g = df_cluster_analysis.loc[df_cluster_analysis['label'] == 0]
 df_bar = g.loc[g['Country Name'].isin(['Denmark', 'Australia', 'United Kingdom'])]
@@ -470,7 +463,6 @@ plt.title('% land by country')
 plt.legend()
 plt.savefig('United Kingdom.png')
 plt.show()
-
 
 # define a sequence of inputs between the smallest and largest known inputs
 x_line = np.arange(min(x_axis), max(x_axis) + 1, 1)
